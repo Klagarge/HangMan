@@ -14,8 +14,6 @@ public class HangMan {
 
     boolean play() {
         boolean party = true;
-        // System.out.print("Please enter a new letter: ");
-        // char c = Input.readChar();
         char c = Dialogs.getChar("Please enter a new letter");
         inputLetter += c + " ";
 
@@ -33,7 +31,6 @@ public class HangMan {
         updateGraphicsView();
         if (current_step >= MAX_STEPS) {
             party = false;
-            // System.out.println("Sorry, you have lost ;( ");
             word.lost("Sorry, you have lost ;(");
 
         }
@@ -101,8 +98,6 @@ public class HangMan {
             while (hang.play() && !hang.word.isWordComplete()) {
                 System.out.println(hang.word.userWord);
             }
-            // System.out.print ("Do you want play another party ? (y/n) ");
-            // char answer = Input.readChar();
             char answer = Dialogs.getChar("Do you want to play another party ? (y/n) ");
             if (answer != 'y' && answer != 'Y') {
                 // System.out.println("Ok, see you later.");
@@ -113,7 +108,3 @@ public class HangMan {
 
     }
 }
-
-// comentaire pour le fun
-// commentaire pour un test
-// commentaire pour un deuxième test

@@ -8,9 +8,6 @@ public class WordManager {
     public String userWord = "";
 
     void askSecretWord(){
-        //System.out.print("Enter your secret word: ");
-        //secretWord = Input.readString();
-        //secretWord = Dialogs.getHiddenString("Enter your secret word: ");
         secretWord = randomWord();
         secretWord = stripAccents(secretWord);
         secretWord = secretWord.toLowerCase();
@@ -36,7 +33,6 @@ public class WordManager {
         boolean complete = false;
         if (secretWord.equals(userWord)) {
             complete = true;
-            //System.out.println("Victory !!");
             Dialogs.displayMessage("Victory !!");
         }
         return complete;
@@ -65,25 +61,24 @@ public class WordManager {
         askLevel += "('d' for difficult)";
         char level = Dialogs.getChar(askLevel);
         int nbrLettreMin = 4;
-        int nbrLettreMax = 12;
+        int nbrLettreMax = Integer.MAX_VALUE;
         String s = "";
-        //String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/french_common_words.csv");
-        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/french_dictionary.txt");
+        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/mots.txt");
 
         switch (level) {
             case 'e':
                 nbrLettreMin = 4;
-                nbrLettreMax = 8;    //5            
+                nbrLettreMax = 8;
                 break;
 
             case 'm':
                 nbrLettreMin = 9;
-                nbrLettreMax = 16; //8
+                nbrLettreMax = 16;
                 break;
                 
             case 'd':
-                nbrLettreMin = 16; //9
-                nbrLettreMax = 25;
+                nbrLettreMin = 16;
+                nbrLettreMax = Integer.MAX_VALUE;
                 break;
 
             default:
@@ -95,7 +90,7 @@ public class WordManager {
             s = word[nbr];
             lg = s.length();
         } while (lg < nbrLettreMin || lg > nbrLettreMax);
-        System.out.println(s);
+        // System.out.println(s); // afficher le mot secret
         return s;
     }
 
