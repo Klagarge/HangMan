@@ -105,6 +105,5 @@ public class HangMan {
                 System.exit(1);
             }
         }
-
     }
 }

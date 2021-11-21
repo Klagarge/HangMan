@@ -63,7 +63,7 @@ public class WordManager {
         int nbrLettreMin = 4;
         int nbrLettreMax = Integer.MAX_VALUE;
         String s = "";
-        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/mots.txt");
+        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/mots.csv");
 
         switch (level) {
             case 'e':
@@ -86,7 +86,7 @@ public class WordManager {
         }
         int lg;
         do {
-            int nbr = (int)(Math.random()*200000);
+            int nbr = (int)(Math.random()*word.length);
             s = word[nbr];
             lg = s.length();
         } while (lg < nbrLettreMin || lg > nbrLettreMax);
