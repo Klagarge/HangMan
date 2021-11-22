@@ -56,41 +56,41 @@ public class WordManager {
     private String randomWord() {
         String askLevel = "";
         askLevel += "Please choose your level \n";
+        askLevel += "('b' for beginner) \n";
         askLevel += "('e' for easy) \n";
         askLevel += "('m' for medium) \n";
-        askLevel += "('d' for difficult)";
+        askLevel += "('d' for difficult) \n";
+        askLevel += "('h' for hardcore)";
         char level = Dialogs.getChar(askLevel);
-        int nbrLettreMin = 4;
-        int nbrLettreMax = Integer.MAX_VALUE;
         String s = "";
-        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/Labo/src/lab6/mots.csv");
+        String[] word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots.csv");
 
         switch (level) {
+            case 'b':
+                word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots_beginner.csv");
+                break;
+
             case 'e':
-                nbrLettreMin = 4;
-                nbrLettreMax = 8;
+                word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots_easy.csv");
                 break;
 
             case 'm':
-                nbrLettreMin = 9;
-                nbrLettreMax = 16;
+                word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots_medium.csv");
                 break;
                 
             case 'd':
-                nbrLettreMin = 16;
-                nbrLettreMax = Integer.MAX_VALUE;
+                word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots_difficult.csv");
+                break;
+
+            case 'h':
+                word = loadList("C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots_hardcore.csv");
                 break;
 
             default:
                 break;
         }
-        int lg;
-        do {
-            int nbr = (int)(Math.random()*word.length);
-            s = word[nbr];
-            lg = s.length();
-        } while (lg < nbrLettreMin || lg > nbrLettreMax);
-        // System.out.println(s); // afficher le mot secret
+        s = word[(int)(Math.random()*word.length)];
+        System.out.println(s); // afficher le mot secret
         return s;
     }
 
