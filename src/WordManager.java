@@ -1,6 +1,7 @@
 import java.text.Normalizer;
 import java.io.*;
 import java.util.ArrayList;
+import java.net.URL;
 // @Klagarge
 /**
  * Class pour la gestion de mots
@@ -79,14 +80,14 @@ public class WordManager {
 
     /**
      * Génère un mot aléatoire en fonction d'une difficulté choisie.
-     * Créé un boîte de dialogue pour inviter l'utilisateur à indiquer le niveau de difficulté désiré.
-     * Choisit dans une liste de mot pré-établi selon le niveau:
-     *  beginner:   liste de 19 mots extrêmement courant
-     *  easy:       liste de 579 mots très courant
-     *  medium:     liste de 4'872 mots courant
-     *  difficult:  liste de 23'371 mots rare
-     *  hardcore:   liste de 108'034 mots très rare
-     * Si pas de niveau choisit, choisit un mot aléatoirement parmis une liste de 331'782 mots
+     * Créé un boîte de dialogue pour inviter l'utilisateur à indiquer le niveau de difficulté désiré
+     * Choisit dans une liste de mot pré-établi selon le niveau: 
+     * <ul><li> beginner:   liste de 19 mots extrêmement courant
+     * <li> easy:       liste de 579 mots très courant
+     * <li> medium:     liste de 4'872 mots courant
+     * <li> difficult:  liste de 23'371 mots rare
+     * <li> hardcore:   liste de 108'034 mots très rare </ul>
+     * <p>Si pas de niveau choisit, choisit un mot aléatoirement parmis une liste de 331'782 mots
      * @return Retourne le mot généré aléatoirement selon la difficulté choisie
      */
     private String randomWord() {
@@ -99,8 +100,7 @@ public class WordManager {
         askLevel += "('h' for hardcore)";
         char level = Dialogs.getChar(askLevel);
         String s = "";
-        String[] word = loadList("bin/words/mots.csv"); // 331'782 mots
-        // C:/Users/remi/OneDrive/Documents/Cours/05-HEVS/S1fb/informatic/labo/vscode/HangMan/src/mots.csv
+        String[] word = loadList("words/mots.csv"); // 331'782 mots
 
         switch (level) {
             case 'b':
@@ -135,13 +135,14 @@ public class WordManager {
      * Charge un fichier (csv ou txt) et met les ligne dans un tableau de String
      * ! le ficier doit être en UTF-8
      * @author Mudry Pierre-André
-     * @param filePath chemin d'accès au fichier
+     * @param filePath chemin d'accès au fichier doit se trouver dans le src
      * @return Tableau de String avec toutes les lignes du fichier d'entrée
      */
     private String[] loadList(String filePath) {
         String[] wordList;
         try {
-          BufferedReader bf = new BufferedReader(new FileReader(filePath));
+            URL url = this.getClass().getClassLoader().getResource(filePath);
+            BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream()));
           ArrayList < String > al = new ArrayList < String > ();
           while (bf.ready()) {
             String[] letterToCheck = bf.readLine().split(";");
