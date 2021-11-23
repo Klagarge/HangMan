@@ -1,7 +1,12 @@
 import java.text.Normalizer;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
+// @Klagarge
+/**
+ * Class pour la gestion de mots
+ * @author Rémi Heredero
+ * @version 1.0.0
+ */
 
 public class WordManager {
     private String secretWord = "";
@@ -17,18 +22,27 @@ public class WordManager {
             userWord += '*';
         }
     }
-
-    boolean checkLetter(char c){
+    /**
+     * Check si la lettre en paramètre est dans le secretWord
+     * Modifie le userWord pour afficher la lettre trouvé à tous les emplacements bon
+    * @param   letterToCheck   lettre à vérifier
+    * @return  Retourne true si la lettre est dans le mot
+    */
+    boolean checkLetter(char letterToCheck){
+        
         boolean letterPresent = false;
         for (int i = 0; i < secretWord.length(); i++) {
-            if(c == secretWord.charAt(i)){
+            if(letterToCheck == secretWord.charAt(i)){
                 letterPresent = true;
-                userWord = userWord.substring(0, i) + c + userWord.substring(i+1);
+                userWord = userWord.substring(0, i) + letterToCheck + userWord.substring(i+1);
             }
         }
         return letterPresent;
     }
-
+    /**
+     * Check si le userWord = le secretWord
+     * @return true si les userWord et le secetWord sont strictement égaux
+     */
     boolean isWordComplete(){
         boolean complete = false;
         if (secretWord.equals(userWord)) {
@@ -40,6 +54,10 @@ public class WordManager {
 
     }
 
+    /**
+     * Afficher un message passé en paramètre et le mot qu'il fallait deviner
+     * @param msg Message à transmettre pour la défaitte.
+     */
     void lost(String msg){
         String s = msg;
         s += "\n\nThe good word was: ";
@@ -47,12 +65,30 @@ public class WordManager {
         Dialogs.displayMessage(s);
     }
 
+    /**
+     * Enlève les accent d'une chaîne de caractère.
+     * @author Mudry Pierre-André
+     * @param s Chaîne de caractère à transmettre avec (ou sans) accents.
+     * @return Chaîne sans accent
+     */
     public static String stripAccents(String s){
         s = Normalizer.normalize(s, Normalizer.Form.NFD);
         s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
         return s;
     }
 
+    /**
+     * Génère un mot aléatoire en fonction d'une difficulté choisie.
+     * Créé un boîte de dialogue pour inviter l'utilisateur à indiquer le niveau de difficulté désiré.
+     * Choisit dans une liste de mot pré-établi selon le niveau:
+     *  beginner:   liste de 19 mots extrêmement courant
+     *  easy:       liste de 579 mots très courant
+     *  medium:     liste de 4'872 mots courant
+     *  difficult:  liste de 23'371 mots rare
+     *  hardcore:   liste de 108'034 mots très rare
+     * Si pas de niveau choisit, choisit un mot aléatoirement parmis une liste de 331'782 mots
+     * @return Retourne le mot généré aléatoirement selon la difficulté choisie
+     */
     private String randomWord() {
         String askLevel = "";
         askLevel += "Please choose your level \n";
@@ -68,7 +104,7 @@ public class WordManager {
 
         switch (level) {
             case 'b':
-                word = loadList("words/mots_beginner.csv"); // 19 mots
+                word = loadList("words/mots_beginner.csv"); // 59 mots
                 break;
 
             case 'e':
@@ -95,14 +131,21 @@ public class WordManager {
         return s;
     }
 
+    /**
+     * Charge un fichier (csv ou txt) et met les ligne dans un tableau de String
+     * ! le ficier doit être en UTF-8
+     * @author Mudry Pierre-André
+     * @param filePath chemin d'accès au fichier
+     * @return Tableau de String avec toutes les lignes du fichier d'entrée
+     */
     private String[] loadList(String filePath) {
         String[] wordList;
         try {
           BufferedReader bf = new BufferedReader(new FileReader(filePath));
           ArrayList < String > al = new ArrayList < String > ();
           while (bf.ready()) {
-            String[] c = bf.readLine().split(";");
-            al.add(c[0]);
+            String[] letterToCheck = bf.readLine().split(";");
+            al.add(letterToCheck[0]);
           }
           wordList = al.stream().toArray(String[]::new);
           System.out.println("[Dictionary loaded with " + wordList.length + " words]");
