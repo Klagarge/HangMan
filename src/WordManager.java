@@ -80,7 +80,7 @@ public class WordManager {
 
     /**
      * Génère un mot aléatoire en fonction d'une difficulté choisie.
-     * Créé un boîte de dialogue pour inviter l'utilisateur à indiquer le niveau de difficulté désiré
+     * <p>Créé un boîte de dialogue pour inviter l'utilisateur à indiquer le niveau de difficulté désiré
      * Choisit dans une liste de mot pré-établi selon le niveau: 
      * <ul><li> beginner:   liste de 19 mots extrêmement courant
      * <li> easy:       liste de 579 mots très courant
