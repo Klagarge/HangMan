@@ -133,7 +133,7 @@ public class WordManager {
 
     /**
      * Charge un fichier (csv ou txt) et met les ligne dans un tableau de String
-     * ! le ficier doit être en UTF-8
+     * ! le fichier doit être en UTF-8
      * @author Mudry Pierre-André
      * @param filePath chemin d'accès au fichier doit se trouver dans le src
      * @return Tableau de String avec toutes les lignes du fichier d'entrée
