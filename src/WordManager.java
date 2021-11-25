@@ -14,7 +14,7 @@ public class WordManager {
     public String userWord = "";
 
     void askSecretWord(){
-        secretWord = "héllo"; //randomWord();
+        secretWord = randomWord();
         secretWord = stripAccents(secretWord);
         secretWord = secretWord.toLowerCase();
         userWord = "";
