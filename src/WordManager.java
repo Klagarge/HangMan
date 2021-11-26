@@ -2,6 +2,7 @@ import java.text.Normalizer;
 import java.io.*;
 import java.util.ArrayList;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 // @Klagarge
 /**
  * Class pour la gestion de mots
@@ -142,7 +143,7 @@ public class WordManager {
         String[] wordList;
         try {
             URL url = this.getClass().getClassLoader().getResource(filePath);
-            BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream()));
+            BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
           ArrayList < String > al = new ArrayList < String > ();
           while (bf.ready()) {
             String[] letterToCheck = bf.readLine().split(";");
