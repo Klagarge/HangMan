@@ -43,7 +43,7 @@ public class WordManager {
     }
     /**
      * Check si le userWord = le secretWord
-     * @return true si les userWord et le secetWord sont strictement égaux
+     * @return true si les userWord et le secretWord sont strictement égaux
      */
     boolean isWordComplete(){
         boolean complete = false;
