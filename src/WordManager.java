@@ -143,7 +143,7 @@ public class WordManager {
         String[] wordList;
         try {
             URL url = this.getClass().getClassLoader().getResource(filePath);
-            BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+            BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)); // ! important de préciser le format de fichier
           ArrayList < String > al = new ArrayList < String > ();
           while (bf.ready()) {
             String[] letterToCheck = bf.readLine().split(";");
