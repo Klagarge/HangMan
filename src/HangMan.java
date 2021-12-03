@@ -6,7 +6,7 @@ public class HangMan {
     final int MAX_STEPS = 8;
     final int scale = 2;
     int current_step = 0;
-    String inputLetter = "Inputed letter: ";
+    String inputLetter = "Input letter: ";
     String inputLetter1 = "";
     String inputLetter2 = "";
     WordManager word = new WordManager();
@@ -90,7 +90,7 @@ public class HangMan {
         HangMan hang = new HangMan();
         while (true) {
             hang.word.askSecretWord();
-            hang.inputLetter = "Inputed letter: ";
+            hang.inputLetter = "Input letters: ";
             hang.inputLetter1 = "";
             hang.inputLetter2 = "";
             hang.current_step = 0;

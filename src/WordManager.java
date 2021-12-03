@@ -88,7 +88,7 @@ public class WordManager {
      * <li> medium:     liste de 4'872 mots courant
      * <li> difficult:  liste de 23'371 mots rare
      * <li> hardcore:   liste de 108'034 mots très rare </ul>
-     * <p>Si pas de niveau choisit, choisit un mot aléatoirement parmis une liste de 331'782 mots
+     * <p>Si pas de niveau choisit, choisit un mot aléatoirement parmi une liste de 331'782 mots
      * @return Retourne le mot généré aléatoirement selon la difficulté choisie
      */
     private String randomWord() {
@@ -144,18 +144,18 @@ public class WordManager {
         try {
             URL url = this.getClass().getClassLoader().getResource(filePath);
             BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)); // ! important de préciser le format de fichier
-          ArrayList < String > al = new ArrayList < String > ();
-          while (bf.ready()) {
-            String[] letterToCheck = bf.readLine().split(";");
-            al.add(letterToCheck[0]);
-          }
-          wordList = al.stream().toArray(String[]::new);
-          System.out.println("[Dictionary loaded with " + wordList.length + " words]");
-          bf.close();
-          return wordList;
+            ArrayList < String > al = new ArrayList < String > ();
+            while (bf.ready()) {
+                String[] letterToCheck = bf.readLine().split(";");
+                al.add(letterToCheck[0]);
+            }
+            wordList = al.stream().toArray(String[]::new);
+            System.out.println("[Dictionary loaded with " + wordList.length + " words]");
+            bf.close();
+            return wordList;
         } catch(Exception e) {
-          e.printStackTrace();
-          return null;
+            e.printStackTrace();
+            return null;
         }
     }
 }
